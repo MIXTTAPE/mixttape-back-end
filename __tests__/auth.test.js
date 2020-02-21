@@ -15,9 +15,9 @@ describe('app routes', () => {
     return mongoose.connection.dropDatabase();
   });
 
-  // beforeEach(() => {
-  //   User.create({ username: 'treemoney', password: '1234' });
-  // });
+  beforeEach(() => {
+    User.create({ username: 'treemo2', password: '1234' });
+  });
 
   afterAll(() => {
     return mongoose.connection.close();
@@ -113,6 +113,5 @@ describe('app routes', () => {
           __v: 0
         });
       });
-
   });
 });
