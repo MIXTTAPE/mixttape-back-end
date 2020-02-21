@@ -55,4 +55,40 @@ describe('app routes', () => {
         });
       });
   });
+
+  it('fails to login a user with a bad username', async() => {
+    await User.create({
+      username: 'treemoney',
+      password: 'password'
+    });
+
+    return request(app)
+      .post('/api/v1/auth/login')
+      .send({ username: 'tresus', password: 'password' })
+      .then(res => {
+        expect(res.status).toEqual(401);
+        expect(res.body).toEqual({
+          status: 401,
+          message: 'Invalid Username/Password'
+        });
+      });
+  });
+
+  it('fails to login a user with a bad password', async() => {
+    await User.create({
+      username: 'treemoney',
+      password: 'password'
+    });
+
+    return request(app)
+      .post('/api/v1/auth/login')
+      .send({ username: 'treemoney', password: '1234' })
+      .then(res => {
+        expect(res.status).toEqual(401);
+        expect(res.body).toEqual({
+          status: 401,
+          message: 'Invalid Username/Password'
+        });
+      });
+  });
 });
