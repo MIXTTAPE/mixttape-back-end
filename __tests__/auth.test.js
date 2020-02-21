@@ -15,6 +15,10 @@ describe('app routes', () => {
     return mongoose.connection.dropDatabase();
   });
 
+  // beforeEach(() => {
+  //   User.create({ username: 'treemoney', password: '1234' });
+  // });
+
   afterAll(() => {
     return mongoose.connection.close();
   });
@@ -27,6 +31,25 @@ describe('app routes', () => {
         expect(res.header['set-cookie'][0]).toEqual(expect.stringContaining('session='));
         expect(res.body).toEqual({
           _id: expect.any(String),
+          username: 'treemo',
+          __v: 0
+        });
+      });
+  });
+
+  it('can login a user with username and password', async() => {
+    const user = await User.create({
+      username: 'treemo',
+      password: 'password'
+    });
+
+    return request(app)
+      .post('/api/v1/auth/login')
+      .send({ username: 'treemo', password: 'password' })
+      .then(res => {
+        expect(res.header['set-cookie'][0]).toEqual(expect.stringContaining('session='));
+        expect(res.body).toEqual({
+          _id: user.id,
           username: 'treemo',
           __v: 0
         });
