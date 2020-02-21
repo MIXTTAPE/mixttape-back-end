@@ -24,11 +24,10 @@ describe('app routes', () => {
       .post('/api/v1/auth/signup')
       .send({ username: 'treemo', password: '1234' })
       .then(res => {
-        // expect(res.header['set-cookie'][0]).toEqual(expect.stringContaining('session='));
+        expect(res.header['set-cookie'][0]).toEqual(expect.stringContaining('session='));
         expect(res.body).toEqual({
           _id: expect.any(String),
-          username: 'tree',
-          password: '1234',
+          username: 'treemo',
           __v: 0
         });
       });
