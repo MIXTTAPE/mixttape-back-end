@@ -106,7 +106,6 @@ describe('app routes', () => {
     return agent
       .get('/api/v1/auth/verify')
       .then(res => {
-       
         expect(res.body).toEqual({
           _id: user.id,
           username: 'treemo',
@@ -114,4 +113,19 @@ describe('app routes', () => {
         });
       });
   });
+
+  // it('can logout a user', async() => {
+  //   const agent = request.agent(app);
+  //   await agent
+  //     .post('/api/v1/auth/login')
+  //     .send({ username: 'treemo', password: 'password' });
+  
+  //   return agent
+  //     .post('/api/v1/auth/logout')
+  //     .then(res => {
+  //       console.log(res);
+  //       expect(res.cookies).toEqual({});
+       
+  //     });
+  // });
 });
