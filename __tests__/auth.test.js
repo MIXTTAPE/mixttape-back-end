@@ -114,18 +114,22 @@ describe('app routes', () => {
       });
   });
 
-  // it('can logout a user', async() => {
-  //   const agent = request.agent(app);
-  //   await agent
-  //     .post('/api/v1/auth/login')
-  //     .send({ username: 'treemo', password: 'password' });
+  it('can logout a user', async() => {
+    await User.create({
+      username: 'treemo',
+      password: 'password'
+    });
+
+    const agent = request.agent(app);
+    await agent
+      .post('/api/v1/auth/login')
+      .send({ username: 'treemo', password: 'password' })
+      // .then(res => console.log(res.headers['set-cookie'][0]));
   
-  //   return agent
-  //     .post('/api/v1/auth/logout')
-  //     .then(res => {
-  //       console.log(res);
-  //       expect(res.cookies).toEqual({});
-       
-  //     });
-  // });
+    return agent
+      .post('/api/v1/auth/logout')
+      .then(res => {
+        expect(res.headers['set-cookie'][0]).toEqual(expect.stringContaining('session=;'));
+      });
+  });
 });
