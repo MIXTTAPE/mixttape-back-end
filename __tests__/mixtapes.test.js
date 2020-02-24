@@ -19,13 +19,12 @@ describe('mixtape routes', () => {
   let travis;
   let user;
   beforeEach(async() => {
-    travis = request.agent(app);
-
     user = await User
       .create({
         username: 'treemo',
         password: '1234'
       });
+    travis = request.agent(app);
     return travis
       .post('/api/v1/auth/login')
       .send({
@@ -174,7 +173,53 @@ describe('mixtape routes', () => {
               __v: 0   
             });
           });
+      });
+  });
 
+  it('can update a mixtape by id', async() => {
+    await User
+      .create({
+        username: 'treemo',
+        password: '1234'
+      });
+    const travis = request.agent(app);
+    return travis
+      .post('/api/v1/auth/login')
+      .send({
+        username: 'treemo',
+        password: '1234'
+      })
+      .then(() => {
+        return travis.get('/api/v1/auth/verify');
+      })
+      .then(() => {
+        return travis
+          .get(`/api/v1/mixtapes/${mixtape.id}`)
+          .then(() => {
+            return travis
+              .patch(`/api/v1/mixtapes/${mixtape.id}`)
+              .send({ title: 'Lil Poppa' })
+              .then(res => {
+                expect(res.body).toEqual({
+                  _id: expect.any(String),
+                  userId: expect.any(String),
+                  songs: [
+                    {
+                      _id: expect.any(String),
+                      nativeId: '345',
+                      nativeSource: 'soundcloud',
+                      title: 'Big Poppa',
+                      thumbnailUrl: 'mypic.com',
+                      buyLink: 'buythis.com',
+                      isMemo: false,
+                      tags: ['rap']
+                    }    
+                  ],
+                  __v: 0   
+                });
+              });
+          });
       });
   });
 });
+
