@@ -15,9 +15,9 @@ describe('app routes', () => {
     return mongoose.connection.dropDatabase();
   });
 
-  beforeEach(() => {
-    User.create({ username: 'treemo2', password: '1234' });
-  });
+  // beforeEach(() => {
+  //   User.create({ username: 'treemo2', password: '1234' });
+  // });
 
   afterAll(() => {
     return mongoose.connection.close();
@@ -123,8 +123,8 @@ describe('app routes', () => {
     const agent = request.agent(app);
     await agent
       .post('/api/v1/auth/login')
-      .send({ username: 'treemo', password: 'password' })
-      // .then(res => console.log(res.headers['set-cookie'][0]));
+      .send({ username: 'treemo', password: 'password' });
+    // .then(res => console.log(res.headers['set-cookie'][0]));
   
     return agent
       .post('/api/v1/auth/logout')
