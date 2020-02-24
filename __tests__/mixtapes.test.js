@@ -49,7 +49,8 @@ describe('mixtape routes', () => {
           isMemo: false,
           tags: ['rap']
         }    
-      ]
+      ],
+      rating: 1
     });
   });
   
@@ -170,6 +171,7 @@ describe('mixtape routes', () => {
                   tags: ['rap']
                 }    
               ],
+              rating: 1,
               __v: 0   
             });
           });
@@ -198,7 +200,7 @@ describe('mixtape routes', () => {
           .then(() => {
             return travis
               .patch(`/api/v1/mixtapes/${mixtape.id}`)
-              .send({ title: 'Lil Poppa' })
+              .send({ rating: 2 })
               .then(res => {
                 expect(res.body).toEqual({
                   _id: expect.any(String),
@@ -215,6 +217,53 @@ describe('mixtape routes', () => {
                       tags: ['rap']
                     }    
                   ],
+                  rating: 2,
+                  __v: 0   
+                });
+              });
+          });
+      });
+  });
+
+  it('can delete a mixtape by id', async() => {
+    await User
+      .create({
+        username: 'treemo',
+        password: '1234'
+      });
+    const travis = request.agent(app);
+    return travis
+      .post('/api/v1/auth/login')
+      .send({
+        username: 'treemo',
+        password: '1234'
+      })
+      .then(() => {
+        return travis.get('/api/v1/auth/verify');
+      })
+      .then(() => {
+        return travis
+          .get(`/api/v1/mixtapes/${mixtape.id}`)
+          .then(() => {
+            return travis
+              .delete(`/api/v1/mixtapes/${mixtape.id}`)
+              .then(res => {
+                expect(res.body).toEqual({
+                  _id: expect.any(String),
+                  userId: expect.any(String),
+                  songs: [
+                    {
+                      _id: expect.any(String),
+                      nativeId: '345',
+                      nativeSource: 'soundcloud',
+                      title: 'Big Poppa',
+                      thumbnailUrl: 'mypic.com',
+                      buyLink: 'buythis.com',
+                      isMemo: false,
+                      tags: ['rap']
+                    }    
+                  ],
+                  rating: 1,
                   __v: 0   
                 });
               });
