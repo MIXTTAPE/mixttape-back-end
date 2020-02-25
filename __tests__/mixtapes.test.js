@@ -39,6 +39,8 @@ describe('mixtape routes', () => {
   beforeEach(async() => {
     mixtape = await Mixtape.create({
       userId: user._id,
+      mixtapeName: 'The Best',
+      createdBy: 'treemoney',
       songs: [
         {
           nativeId: '345',
@@ -54,6 +56,8 @@ describe('mixtape routes', () => {
     });
     await Mixtape.create({
       userId: user._id,
+      mixtapeName: 'The Best',
+      createdBy: 'treemoney',
       songs: [
         {
           nativeId: '567',
@@ -78,6 +82,8 @@ describe('mixtape routes', () => {
       .post('/api/v1/mixtapes')
       .send({
         userId: user._id,
+        mixtapeName: 'The Best',
+        createdBy: 'treemo',
         songs: [
           {
             nativeId: '345',
@@ -116,6 +122,8 @@ describe('mixtape routes', () => {
           .post('/api/v1/mixtapes')
           .send({
             userId: user._id,
+            mixtapeName: 'The Best',
+            createdBy: 'treemo',
             songs: [
               {
                 nativeId: '345',
@@ -132,6 +140,8 @@ describe('mixtape routes', () => {
             expect(res.body).toEqual({
               _id: expect.any(String),
               userId: expect.any(String),
+              mixtapeName: 'The Best',
+              createdBy: 'treemo',
               songs: [
                 {
                   _id: expect.any(String),
@@ -174,6 +184,8 @@ describe('mixtape routes', () => {
             expect(res.body).toEqual({
               _id: expect.any(String),
               userId: expect.any(String),
+              mixtapeName: 'The Best',
+              createdBy: 'treemoney',
               songs: [
                 {
                   _id: expect.any(String),
@@ -220,6 +232,8 @@ describe('mixtape routes', () => {
                 expect(res.body).toEqual({
                   _id: expect.any(String),
                   userId: expect.any(String),
+                  mixtapeName: 'The Best',
+                  createdBy: 'treemoney',
                   songs: [
                     {
                       _id: expect.any(String),
@@ -266,6 +280,8 @@ describe('mixtape routes', () => {
                 expect(res.body).toEqual({
                   _id: expect.any(String),
                   userId: expect.any(String),
+                  mixtapeName: 'The Best',
+                  createdBy: 'treemoney',
                   songs: [
                     {
                       _id: expect.any(String),
