@@ -21,6 +21,8 @@ describe('user routes', () => {
     user = await User.create({ username: 'treesus', password: '1234' });
     await Mixtape.create({
       userId: user._id,
+      mixtapeName: 'The Best',
+      createdBy: 'tresus',
       songs: [
         {
           nativeId: '345',
@@ -36,6 +38,8 @@ describe('user routes', () => {
     });
     await Mixtape.create({
       userId: user._id,
+      mixtapeName: 'Better',
+      createdBy: 'tresus',
       songs: [
         {
           nativeId: '567',
@@ -63,6 +67,8 @@ describe('user routes', () => {
           mixtapes: [{
             __v: 0,
             _id: expect.any(String),
+            mixtapeName: 'The Best',
+            createdBy: 'tresus',
             rating: 1,
             songs: [{
               _id: expect.any(String),
@@ -78,6 +84,8 @@ describe('user routes', () => {
           },
           { __v: 0,
             _id: expect.any(String),
+            mixtapeName: 'Better',
+            createdBy: 'tresus',
             rating: 3,
             songs: [{
               _id: expect.any(String),
