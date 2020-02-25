@@ -8,7 +8,7 @@ const Mixtape = require('../lib/models/Mixtape');
 const User = require('../lib/models/User');
 
 describe('mixtape routes', () => {
-  beforeAll(async() => {
+  beforeAll(() => {
     connect();
   });
   
