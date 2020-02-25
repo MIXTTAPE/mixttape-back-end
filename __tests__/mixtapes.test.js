@@ -21,14 +21,14 @@ describe('mixtape routes', () => {
   beforeEach(async() => {
     user = await User
       .create({
-        username: 'treemo',
+        username: 'treemoney',
         password: '1234'
       });
     travis = request.agent(app);
     return travis
       .post('/api/v1/auth/login')
       .send({
-        username: 'treemo',
+        username: 'treemoney',
         password: '1234'
       })
       .then(() => {
@@ -51,6 +51,21 @@ describe('mixtape routes', () => {
         }    
       ],
       rating: 1
+    });
+    await Mixtape.create({
+      userId: user._id,
+      songs: [
+        {
+          nativeId: '567',
+          nativeSource: 'youtube',
+          title: 'Lady Gaga',
+          thumbnailUrl: 'mycoolpic.com',
+          buyLink: 'buythissicktrack.com',
+          isMemo: false,
+          tags: ['pop']
+        }    
+      ],
+      rating: 3
     });
   });
   
@@ -270,5 +285,15 @@ describe('mixtape routes', () => {
           });
       });
   });
+
+  //   it.only('can find all mixtapes by user', () => {
+ 
+//     return request(app)
+//       .get(`/api/v1/mixtapes/byuser/${user._id}`)
+//       .then((res) => {
+//         expect(res.body).toEqual('');
+//       });
+//   });
 });
+
 
