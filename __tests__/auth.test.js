@@ -51,6 +51,7 @@ describe('app routes', () => {
         expect(res.body).toEqual({
           _id: user.id,
           username: 'treemo',
+          mixtapes:[],
           __v: 0
         });
       });
