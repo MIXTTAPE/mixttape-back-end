@@ -109,6 +109,7 @@ describe('app routes', () => {
       .then(res => {
         expect(res.body).toEqual({
           _id: user.id,
+          mixtapes: [],
           username: 'treemo',
           __v: 0
         });
