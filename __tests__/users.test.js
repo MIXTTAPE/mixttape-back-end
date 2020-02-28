@@ -18,7 +18,7 @@ describe('user routes', () => {
 
   let user;
   beforeEach(async() => {
-    user = await User.create({ username: 'treesus', password: '1234' });
+    user = await User.create({ username: 'treesus', password: '123456789' });
     await Mixtape.create({
       userId: user._id,
       mixtapeName: 'The Best',

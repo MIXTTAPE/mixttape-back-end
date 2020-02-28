@@ -26,7 +26,7 @@ describe('app routes', () => {
   it('should be able to sign up a user', () => {
     return request(app)
       .post('/api/v1/auth/signup')
-      .send({ username: 'treemo', password: '1234' })
+      .send({ username: 'treemo', password: '123456789' })
       .then(res => {
         expect(res.header['set-cookie'][0]).toEqual(expect.stringContaining('session='));
         expect(res.body).toEqual({

@@ -22,14 +22,14 @@ describe('mixtape routes', () => {
     user = await User
       .create({
         username: 'treemoney',
-        password: '1234'
+        password: '123456789'
       });
     travis = request.agent(app);
     return travis
       .post('/api/v1/auth/login')
       .send({
         username: 'treemoney',
-        password: '1234'
+        password: '123456789'
       })
       .then(() => {
         return travis.get('/api/v1/auth/verify');
@@ -105,14 +105,14 @@ describe('mixtape routes', () => {
     await User
       .create({
         username: 'treemo',
-        password: '1234'
+        password: '123456789'
       });
     const travis = request.agent(app);
     return travis
       .post('/api/v1/auth/login')
       .send({
         username: 'treemo',
-        password: '1234'
+        password: '123456789'
       })
       .then(() => {
         return travis.get('/api/v1/auth/verify');
@@ -165,14 +165,14 @@ describe('mixtape routes', () => {
     await User
       .create({
         username: 'treemo',
-        password: '1234'
+        password: '123456789'
       });
     const travis = request.agent(app);
     return travis
       .post('/api/v1/auth/login')
       .send({
         username: 'treemo',
-        password: '1234'
+        password: '123456789'
       })
       .then(() => {
         return travis.get('/api/v1/auth/verify');
@@ -209,14 +209,14 @@ describe('mixtape routes', () => {
     await User
       .create({
         username: 'treemo',
-        password: '1234'
+        password: '123456789'
       });
     const travis = request.agent(app);
     return travis
       .post('/api/v1/auth/login')
       .send({
         username: 'treemo',
-        password: '1234'
+        password: '123456789'
       })
       .then(() => {
         return travis.get('/api/v1/auth/verify');
@@ -258,14 +258,14 @@ describe('mixtape routes', () => {
     await User
       .create({
         username: 'treemo',
-        password: '1234'
+        password: '123456789'
       });
     const travis = request.agent(app);
     return travis
       .post('/api/v1/auth/login')
       .send({
         username: 'treemo',
-        password: '1234'
+        password: '123456789'
       })
       .then(() => {
         return travis.get('/api/v1/auth/verify');
